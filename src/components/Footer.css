@@ -3,9 +3,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 32px;
-  background: #111827;
-  color: #cbd5e1;
+  width: 100%;
+  padding: 28px clamp(18px, 4vw, 56px);
+  background: #ffffff;
+  color: var(--text);
+  border-top: 1px solid var(--border);
   box-sizing: border-box;
   text-align: left;
 }
@@ -16,7 +18,7 @@
 }
 
 .site-footer-brand {
-  color: #ffffff;
+  color: var(--text-h);
   font-size: 18px;
   font-weight: 900;
 }
@@ -29,14 +31,15 @@
 }
 
 .site-footer-links a {
-  color: #e5e7eb;
+  color: var(--text);
   font-size: 14px;
   font-weight: 800;
   text-decoration: none;
+  transition: color 180ms ease;
 }
 
 .site-footer-links a:hover {
-  color: #5eead4;
+  color: var(--primary);
 }
 
 @media (max-width: 700px) {

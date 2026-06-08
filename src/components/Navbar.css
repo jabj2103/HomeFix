@@ -6,45 +6,62 @@
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  padding: 16px 32px;
-  background: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid #e5e7eb;
-  backdrop-filter: blur(14px);
+  width: 100%;
+  padding: 14px clamp(18px, 4vw, 56px);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(18px);
   box-sizing: border-box;
 }
 
 .site-navbar-brand {
-  color: #111827;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-h);
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 950;
   text-decoration: none;
+}
+
+.site-navbar-brand::before {
+  content: "";
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, var(--primary), #60a5fa);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.26);
 }
 
 .site-navbar-links {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .site-navbar-links a {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding: 0 12px;
-  border-radius: 8px;
-  color: #475569;
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  color: var(--text);
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 850;
   text-decoration: none;
   transition:
     background 180ms ease,
-    color 180ms ease;
+    color 180ms ease,
+    transform 180ms ease;
 }
 
 .site-navbar-links a:hover,
 .site-navbar-links a.active {
-  background: #f1f5f9;
-  color: #0f172a;
+  background: var(--primary-soft);
+  color: var(--primary);
+  transform: translateY(-1px);
 }
 
 .site-navbar-cart {
@@ -58,7 +75,7 @@
   height: 22px;
   padding: 0 6px;
   border-radius: 999px;
-  background: #0f766e;
+  background: var(--primary);
   color: #ffffff;
   font-size: 12px;
   line-height: 1;
@@ -76,7 +93,7 @@
 .site-navbar-user span {
   max-width: 180px;
   overflow: hidden;
-  color: #0f172a;
+  color: var(--text-h);
   font-size: 14px;
   font-weight: 800;
   text-overflow: ellipsis;
@@ -86,8 +103,8 @@
 .site-navbar-user button {
   min-height: 36px;
   border: 0;
-  border-radius: 8px;
-  background: #111827;
+  border-radius: 12px;
+  background: var(--primary);
   color: #ffffff;
   cursor: pointer;
   font: inherit;
@@ -100,7 +117,7 @@
   .site-navbar {
     align-items: flex-start;
     flex-direction: column;
-    padding: 14px 18px;
+    padding: 14px 16px;
   }
 
   .site-navbar-links {
