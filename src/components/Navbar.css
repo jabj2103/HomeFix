@@ -1,0 +1,118 @@
+.site-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid #e5e7eb;
+  backdrop-filter: blur(14px);
+  box-sizing: border-box;
+}
+
+.site-navbar-brand {
+  color: #111827;
+  font-size: 24px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.site-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-navbar-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.site-navbar-links a:hover,
+.site-navbar-links a.active {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.site-navbar-cart {
+  gap: 8px;
+}
+
+.site-navbar-cart-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #0f766e;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.site-navbar-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding-left: 8px;
+}
+
+.site-navbar-user span {
+  max-width: 180px;
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-navbar-user button {
+  min-height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: #111827;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 0 12px;
+}
+
+@media (max-width: 640px) {
+  .site-navbar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 18px;
+  }
+
+  .site-navbar-links {
+    width: 100%;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .site-navbar-user {
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 0;
+  }
+}
