@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AdminRoute from "./components/AdminRoute";
+import AnalyticsTracker from "./components/AnalyticsTracker";
 
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -18,6 +19,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 function App() {
   return (
     <BrowserRouter>
+      <AnalyticsTracker />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -39,6 +41,7 @@ function App() {
             </AdminRoute>
           }
         />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       <Footer />

@@ -12,7 +12,7 @@ function Footer() {
       <nav className="site-footer-links" aria-label="Enlaces del pie de página">
         <Link to="/products">Productos</Link>
         <Link to="/services">Servicios</Link>
-        <Link to="/privacy-policy">Política de privacidad</Link>
+        <Link to="/privacy">Política de privacidad</Link>
       </nav>
     </footer>
   );
