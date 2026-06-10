@@ -1,10 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../services/authService";
 import "./Auth.css";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,7 +29,7 @@ function Login() {
       setLoading(true);
       setError("");
       await loginUser(formData);
-      navigate("/products");
+      navigate(location.state?.from || "/products", { replace: true });
     } catch (error) {
       console.error(error);
       setError("No se pudo iniciar sesion. Revisa tu correo y contrasena.");

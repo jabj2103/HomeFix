@@ -27,7 +27,10 @@ function Checkout() {
       const currentUser = await getCurrentUser();
 
       if (!currentUser) {
-        navigate("/login", { replace: true });
+        navigate("/login", {
+          replace: true,
+          state: { from: "/checkout" },
+        });
         return;
       }
 

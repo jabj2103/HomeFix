@@ -11,6 +11,10 @@ export async function getCurrentUser() {
   }
 }
 
+export function userHasLabel(user, label) {
+  return user?.labels?.includes(label) ?? false;
+}
+
 export async function registerUser({ name, email, password }) {
   await account.create({
     userId: ID.unique(),

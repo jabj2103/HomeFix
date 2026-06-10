@@ -17,7 +17,7 @@ export async function getServices() {
   }));
 }
 
-export async function createServiceRequest(service, formData) {
+export async function createServiceRequest(service, formData, user) {
   const preferredDate = new Date(
     `${formData.preferredDate}T12:00:00`
   ).toISOString();
@@ -27,6 +27,7 @@ export async function createServiceRequest(service, formData) {
     tableId: TABLES.serviceRequests,
     rowId: ID.unique(),
     data: {
+      userId: user.$id,
       customerName: formData.fullName,
       email: formData.email,
       phone: formData.phone,

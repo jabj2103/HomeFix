@@ -102,31 +102,57 @@
   gap: 16px;
   padding: 22px;
   border-radius: 28px;
-  background: #0f172a;
+  background: #172554;
   box-shadow: var(--shadow-md);
 }
 
-.home-hero-panel div {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
+.home-hero-panel article {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
   min-height: 130px;
   padding: 22px;
   border-radius: 20px;
-  background:
-    linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(255, 255, 255, 0.08));
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(191, 219, 254, 0.16);
   color: #ffffff;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
 }
 
-.home-hero-panel span {
-  font-size: 34px;
+.home-hero-panel article:hover {
+  background: rgba(37, 99, 235, 0.28);
+  border-color: rgba(191, 219, 254, 0.38);
+  transform: translateX(3px);
+}
+
+.home-benefit-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 14px;
+  background: #ffffff;
+  color: var(--primary);
+  font-size: 21px;
+}
+
+.home-hero-panel h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(24px, 3vw, 34px);
   font-weight: 950;
 }
 
 .home-hero-panel p {
-  margin-top: 8px;
+  margin: 7px 0 0;
   color: #dbeafe;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 1.45;
 }
 
 .home-feature-grid {
@@ -137,8 +163,10 @@
 }
 
 .home-feature-grid article {
+  position: relative;
+  overflow: hidden;
   min-height: 220px;
-  padding: 24px;
+  padding: 28px;
   border: 1px solid var(--border);
   border-radius: 24px;
   background: #ffffff;
@@ -155,16 +183,45 @@
   transform: translateY(-4px);
 }
 
-.home-feature-grid span {
+.home-feature-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home-feature-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--primary-soft);
   color: var(--primary);
+  font-size: 20px;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.home-feature-grid article:hover .home-feature-icon {
+  background: var(--primary);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.home-feature-heading span {
+  color: var(--primary);
+  font-size: 13px;
   font-weight: 950;
 }
 
 .home-feature-grid h2 {
-  margin-top: 16px;
+  margin-top: 22px;
   color: var(--text-h);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 900;
+  line-height: 1.25;
 }
 
 .home-feature-grid p {
@@ -192,6 +249,11 @@
   .home-hero-content,
   .home-hero-panel {
     border-radius: 22px;
+  }
+
+  .home-hero-panel article {
+    min-height: 112px;
+    padding: 18px;
   }
 
   .home-actions a {

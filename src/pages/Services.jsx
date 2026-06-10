@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   createServiceRequest,
   getServices,
 } from "../services/serviceService";
+import { getCurrentUser } from "../services/authService";
 import "./Services.css";
 
 const priceFormatter = new Intl.NumberFormat("es-CO", {
@@ -46,6 +48,7 @@ function getServicePrice(service) {
 }
 
 function Services() {
+  const navigate = useNavigate();
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -53,6 +56,7 @@ function Services() {
   const [requestStatus, setRequestStatus] = useState("");
   const [requestError, setRequestError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [requestUser, setRequestUser] = useState(null);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -84,7 +88,22 @@ function Services() {
     loadServices();
   }, []);
 
-  function openRequestForm(service) {
+  async function openRequestForm(service) {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      navigate("/login", {
+        state: { from: "/services" },
+      });
+      return;
+    }
+
+    setRequestUser(currentUser);
+    setFormData((currentData) => ({
+      ...currentData,
+      fullName: currentData.fullName || currentUser.name || "",
+      email: currentData.email || currentUser.email || "",
+    }));
     setSelectedService(service);
     setRequestStatus("");
     setRequestError("");
@@ -92,6 +111,7 @@ function Services() {
 
   function closeRequestForm() {
     setSelectedService(null);
+    setRequestUser(null);
     setRequestError("");
     setSubmitting(false);
   }
@@ -115,7 +135,17 @@ function Services() {
     try {
       setSubmitting(true);
       setRequestError("");
-      await createServiceRequest(selectedService, formData);
+      const currentUser = requestUser || (await getCurrentUser());
+
+      if (!currentUser) {
+        closeRequestForm();
+        navigate("/login", {
+          state: { from: "/services" },
+        });
+        return;
+      }
+
+      await createServiceRequest(selectedService, formData, currentUser);
       setRequestStatus("Tu solicitud fue enviada correctamente.");
       setFormData({
         fullName: "",
@@ -128,6 +158,7 @@ function Services() {
         problemDescription: "",
       });
       setSelectedService(null);
+      setRequestUser(null);
     } catch (error) {
       console.error(error);
       const message = error.message || "";

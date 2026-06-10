@@ -1,4 +1,11 @@
 import { Link } from "react-router-dom";
+import {
+  FaClock,
+  FaShieldAlt,
+  FaShoppingCart,
+  FaTools,
+  FaUserCheck,
+} from "react-icons/fa";
 import "./Home.css";
 
 function Home() {
@@ -6,11 +13,12 @@ function Home() {
     <main className="home-page">
       <section className="home-hero">
         <div className="home-hero-content">
-          <p className="home-eyebrow">Productos y servicios para tu hogar</p>
-          <h1>Soluciones HomeFix para comprar, reparar y mejorar tu casa</h1>
+          <p className="home-eyebrow">Tu hogar, mejor atendido</p>
+          <h1>Soluciones confiables para cuidar y mejorar tu hogar</h1>
           <p className="home-hero-copy">
-            Encuentra productos esenciales, solicita servicios técnicos y
-            gestiona tus compras desde una plataforma simple, segura y moderna.
+            Encuentra productos esenciales y solicita servicios técnicos con
+            información clara, atención organizada y seguimiento desde un solo
+            lugar.
           </p>
           <div className="home-actions">
             <Link className="home-primary-action" to="/products">
@@ -22,45 +30,78 @@ function Home() {
           </div>
         </div>
 
-        <div className="home-hero-panel" aria-label="Resumen HomeFix">
-          <div>
-            <span>24h</span>
-            <p>Solicitudes organizadas por urgencia</p>
-          </div>
-          <div>
-            <span>100%</span>
-            <p>Checkout y carrito conectados</p>
-          </div>
-          <div>
-            <span>COP</span>
-            <p>Precios claros para Colombia</p>
-          </div>
+        <div className="home-hero-panel" aria-label="Beneficios HomeFix">
+          <article>
+            <div className="home-benefit-icon" aria-hidden="true">
+              <FaClock />
+            </div>
+            <div>
+              <h2>24h</h2>
+              <p>Atención rápida para emergencias del hogar</p>
+            </div>
+          </article>
+          <article>
+            <div className="home-benefit-icon" aria-hidden="true">
+              <FaShieldAlt />
+            </div>
+            <div>
+              <h2>Verificados</h2>
+              <p>Técnicos y servicios con mayor respaldo y confianza</p>
+            </div>
+          </article>
+          <article>
+            <div className="home-benefit-icon" aria-hidden="true">
+              <FaTools />
+            </div>
+            <div>
+              <h2>Todo en uno</h2>
+              <p>
+                Productos, servicios, pedidos y solicitudes en una sola
+                plataforma
+              </p>
+            </div>
+          </article>
         </div>
       </section>
 
-      <section className="home-feature-grid" aria-label="Beneficios">
+      <section className="home-feature-grid" aria-label="Cómo funciona HomeFix">
         <article>
-          <span>01</span>
-          <h2>Compra productos</h2>
+          <div className="home-feature-heading">
+            <div className="home-feature-icon" aria-hidden="true">
+              <FaShoppingCart />
+            </div>
+            <span>01</span>
+          </div>
+          <h2>Compra productos para el hogar</h2>
           <p>
-            Agrega artículos al carrito, revisa subtotales y finaliza tu compra
-            con un flujo preparado para pagos.
+            Encuentra artículos de plomería, electricidad, herramientas,
+            pintura y mantenimiento en un solo lugar.
           </p>
         </article>
         <article>
-          <span>02</span>
-          <h2>Agenda servicios</h2>
+          <div className="home-feature-heading">
+            <div className="home-feature-icon" aria-hidden="true">
+              <FaTools />
+            </div>
+            <span>02</span>
+          </div>
+          <h2>Solicita servicios técnicos</h2>
           <p>
-            Solicita soporte para el hogar con fecha, franja horaria y nivel de
-            urgencia para una mejor clasificación.
+            Agenda plomería, cerrajería, electricidad o mantenimiento con
+            información clara y organizada.
           </p>
         </article>
         <article>
-          <span>03</span>
-          <h2>Gestiona tu cuenta</h2>
+          <div className="home-feature-heading">
+            <div className="home-feature-icon" aria-hidden="true">
+              <FaUserCheck />
+            </div>
+            <span>03</span>
+          </div>
+          <h2>Haz seguimiento desde tu perfil</h2>
           <p>
-            Crea sesión, conserva tus datos de usuario y navega con una
-            experiencia pensada para ecommerce.
+            Consulta tus pedidos y solicitudes sin depender de llamadas,
+            mensajes o procesos informales.
           </p>
         </article>
       </section>

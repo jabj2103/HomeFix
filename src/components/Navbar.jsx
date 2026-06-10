@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   getCartItems,
@@ -9,10 +9,12 @@ import {
   getCurrentUser,
   logoutUser,
   subscribeToAuthUpdates,
+  userHasLabel,
 } from "../services/authService";
 import "./Navbar.css";
 
 function Navbar() {
+  const navigate = useNavigate();
   const [cartCount, setCartCount] = useState(() =>
     getCartItemsCount(getCartItems())
   );
@@ -41,6 +43,7 @@ function Navbar() {
   async function handleLogout() {
     await logoutUser();
     setUser(null);
+    navigate("/login", { replace: true });
   }
 
   return (
@@ -60,6 +63,10 @@ function Navbar() {
 
         {user ? (
           <div className="site-navbar-user">
+            <NavLink to="/profile">Perfil</NavLink>
+            {userHasLabel(user, "admin") && (
+              <NavLink to="/admin">Administración</NavLink>
+            )}
             <span>{user.name || user.email}</span>
             <button type="button" onClick={handleLogout}>
               Cerrar sesion
