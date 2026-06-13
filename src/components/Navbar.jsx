@@ -48,8 +48,8 @@ function Navbar() {
 
   return (
     <header className="site-navbar">
-      <Link className="site-navbar-brand" to="/">
-        HomeFix
+      <Link className="site-navbar-brand" to="/" aria-label="HomeFix - Inicio">
+        <img src="/homefix-logo.png" alt="HomeFix" />
       </Link>
 
       <nav className="site-navbar-links" aria-label="Navegacion principal">

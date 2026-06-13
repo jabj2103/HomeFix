@@ -21,6 +21,12 @@ function Checkout() {
   const [error, setError] = useState("");
   const [orderCreated, setOrderCreated] = useState(null);
   const [payuPaymentData, setPayuPaymentData] = useState(null);
+  const [delivery, setDelivery] = useState({
+    phone: "",
+    city: "",
+    address: "",
+    details: "",
+  });
 
   useEffect(() => {
     async function prepareCheckout() {
@@ -51,7 +57,18 @@ function Checkout() {
     [items]
   );
 
-  async function handleWompiPayment() {
+  function handleDeliveryChange(event) {
+    const { name, value } = event.target;
+
+    setDelivery((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  }
+
+  async function handleWompiPayment(event) {
+    event.preventDefault();
+
     if (!user || items.length === 0) {
       return;
     }
@@ -59,7 +76,7 @@ function Checkout() {
     try {
       setSubmitting(true);
       setError("");
-      const order = await createOrder({ user, items, total });
+      const order = await createOrder({ user, items, total, delivery });
       setOrderCreated(order);
       setPayuPaymentData(getPayuPaymentData({ order, user, total }));
     } catch (error) {
@@ -130,6 +147,78 @@ function Checkout() {
                 </article>
               );
             })}
+
+            <form
+              className="checkout-delivery"
+              id="checkout-delivery-form"
+              onSubmit={handleWompiPayment}
+            >
+              <div className="checkout-delivery-heading">
+                <div>
+                  <h2>Datos de entrega</h2>
+                  <p>Indica dónde debemos entregar tu pedido.</p>
+                </div>
+                <span>Obligatorio</span>
+              </div>
+
+              <div className="checkout-delivery-grid">
+                <label>
+                  Teléfono de contacto
+                  <input
+                    name="phone"
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    value={delivery.phone}
+                    onChange={handleDeliveryChange}
+                    minLength="7"
+                    maxLength="20"
+                    disabled={Boolean(orderCreated)}
+                    required
+                  />
+                </label>
+
+                <label>
+                  Ciudad o municipio
+                  <input
+                    name="city"
+                    autoComplete="address-level2"
+                    value={delivery.city}
+                    onChange={handleDeliveryChange}
+                    maxLength="100"
+                    disabled={Boolean(orderCreated)}
+                    required
+                  />
+                </label>
+
+                <label className="checkout-delivery-full">
+                  Dirección
+                  <input
+                    name="address"
+                    autoComplete="street-address"
+                    placeholder="Ej. Calle 80 # 20-15"
+                    value={delivery.address}
+                    onChange={handleDeliveryChange}
+                    maxLength="180"
+                    disabled={Boolean(orderCreated)}
+                    required
+                  />
+                </label>
+
+                <label className="checkout-delivery-full">
+                  Indicaciones adicionales
+                  <textarea
+                    name="details"
+                    placeholder="Apartamento, torre, barrio o referencia"
+                    value={delivery.details}
+                    onChange={handleDeliveryChange}
+                    maxLength="300"
+                    disabled={Boolean(orderCreated)}
+                    rows="3"
+                  />
+                </label>
+              </div>
+            </form>
           </div>
 
           <aside className="checkout-summary">
@@ -174,8 +263,8 @@ function Checkout() {
             ) : (
               <button
                 className="checkout-pay-button"
-                type="button"
-                onClick={handleWompiPayment}
+                type="submit"
+                form="checkout-delivery-form"
                 disabled={submitting}
               >
                 {submitting ? "Creando orden..." : "Pagar con PayU Sandbox"}

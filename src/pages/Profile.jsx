@@ -5,6 +5,7 @@ import {
   getUserOrders,
   getUserServiceRequests,
 } from "../services/profileService";
+import { getOrderDetails } from "../services/orderService";
 import "./Profile.css";
 
 const formatCurrency = (value) =>
@@ -173,20 +174,31 @@ function Profile() {
                 <p>Los pedidos que realices apareceran en esta seccion.</p>
               </div>
             ) : (
-              orders.map((order) => (
-                <article className="profile-item" key={order.$id}>
-                  <div>
-                    <p className="profile-item-label">Pedido</p>
-                    <h2>#{order.$id.slice(-8).toUpperCase()}</h2>
-                    <p>{formatDate(order.$createdAt)}</p>
-                  </div>
-                  <div className="profile-item-details">
-                    <span className="profile-status">{order.status}</span>
-                    <strong>{formatCurrency(order.total)}</strong>
-                    <small>{order.paymentMethod || "Metodo por confirmar"}</small>
-                  </div>
-                </article>
-              ))
+              orders.map((order) => {
+                const delivery = getOrderDetails(order).delivery;
+
+                return (
+                  <article className="profile-item" key={order.$id}>
+                    <div>
+                      <p className="profile-item-label">Pedido</p>
+                      <h2>#{order.$id.slice(-8).toUpperCase()}</h2>
+                      <p>{formatDate(order.$createdAt)}</p>
+                      {delivery && (
+                        <p>
+                          Entrega: {delivery.address}, {delivery.city}
+                        </p>
+                      )}
+                    </div>
+                    <div className="profile-item-details">
+                      <span className="profile-status">{order.status}</span>
+                      <strong>{formatCurrency(order.total)}</strong>
+                      <small>
+                        {order.paymentMethod || "Metodo por confirmar"}
+                      </small>
+                    </div>
+                  </article>
+                );
+              })
             )}
           </div>
         )}

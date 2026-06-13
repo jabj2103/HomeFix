@@ -6,6 +6,7 @@ import {
   updateOrderStatus,
   updateServiceRequestStatus,
 } from "../services/adminService";
+import { getOrderDetails } from "../services/orderService";
 import "./AdminDashboard.css";
 
 const orderStatuses = [
@@ -61,6 +62,35 @@ function getErrorMessage(error, tableName) {
   }
 
   return `No se pudo cargar la informacion de ${tableName}.`;
+}
+
+function getStatusUpdateError(error, type) {
+  const message = error?.message || "";
+  const normalizedMessage = message.toLowerCase();
+  const resourceName =
+    type === "order" ? "el pedido" : "la solicitud de servicio";
+
+  if (
+    error?.code === 401 ||
+    normalizedMessage.includes("not authorized") ||
+    normalizedMessage.includes("permission") ||
+    normalizedMessage.includes("unauthorized")
+  ) {
+    return `No tienes permiso para actualizar ${resourceName}. Verifica que el usuario conserve el label admin y vuelve a iniciar sesion.`;
+  }
+
+  if (
+    error?.code === 400 ||
+    normalizedMessage.includes("document structure") ||
+    normalizedMessage.includes("attribute") ||
+    normalizedMessage.includes("value")
+  ) {
+    return `Appwrite rechazo el valor de status: ${message}`;
+  }
+
+  return message
+    ? `No se pudo actualizar ${resourceName}: ${message}`
+    : `No se pudo actualizar ${resourceName}.`;
 }
 
 function AdminDashboard() {
@@ -154,9 +184,7 @@ function AdminDashboard() {
       }
     } catch (error) {
       console.error("No se pudo actualizar el estado:", error);
-      setUpdateError(
-        "No se pudo actualizar el estado. Revisa el permiso Update para el label admin.",
-      );
+      setUpdateError(getStatusUpdateError(error, type));
     } finally {
       setUpdatingId("");
     }
@@ -233,39 +261,52 @@ function AdminDashboard() {
                     <th>Pedido</th>
                     <th>Fecha</th>
                     <th>Total</th>
+                    <th>Entrega</th>
                     <th>Pago</th>
                     <th>Estado</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order) => (
-                    <tr key={order.$id}>
-                      <td>#{order.$id.slice(-8).toUpperCase()}</td>
-                      <td>{formatDate(order.$createdAt)}</td>
-                      <td>{priceFormatter.format(Number(order.total) || 0)}</td>
-                      <td>{order.paymentMethod || "Sin definir"}</td>
-                      <td>
-                        <select
-                          value={order.status}
-                          disabled={updatingId === order.$id}
-                          onChange={(event) =>
-                            handleStatusChange(
-                              "order",
-                              order.$id,
-                              event.target.value,
-                            )
-                          }
-                          aria-label={`Estado del pedido ${order.$id}`}
-                        >
-                          {orderStatuses.map((status) => (
-                            <option key={status} value={status}>
-                              {status}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                    </tr>
-                  ))}
+                  {orders.map((order) => {
+                    const delivery = getOrderDetails(order).delivery;
+
+                    return (
+                      <tr key={order.$id}>
+                        <td>#{order.$id.slice(-8).toUpperCase()}</td>
+                        <td>{formatDate(order.$createdAt)}</td>
+                        <td>{priceFormatter.format(Number(order.total) || 0)}</td>
+                        <td>
+                          {delivery
+                            ? [delivery.address, delivery.city]
+                                .filter(Boolean)
+                                .join(", ")
+                            : "Sin direccion registrada"}
+                          {delivery?.phone && <small>{delivery.phone}</small>}
+                        </td>
+                        <td>{order.paymentMethod || "Sin definir"}</td>
+                        <td>
+                          <select
+                            value={order.status}
+                            disabled={updatingId === order.$id}
+                            onChange={(event) =>
+                              handleStatusChange(
+                                "order",
+                                order.$id,
+                                event.target.value,
+                              )
+                            }
+                            aria-label={`Estado del pedido ${order.$id}`}
+                          >
+                            {orderStatuses.map((status) => (
+                              <option key={status} value={status}>
+                                {status}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
               {orders.length === 0 && (

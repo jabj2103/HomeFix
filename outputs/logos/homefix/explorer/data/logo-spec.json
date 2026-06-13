@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "title": "Exploracion de logo para HomeFix",
+    "stage": "Logo exploration",
+    "brand_name": "HomeFix",
+    "anchor": "Plataforma para comprar productos del hogar y solicitar servicios tecnicos confiables",
+    "summary": "Identidad clara, moderna y confiable que conecta hogar, reparacion y seguimiento digital."
+  },
+  "constraints": {
+    "preserve": [
+      "nombre exacto: HomeFix",
+      "azul principal #2563eb",
+      "azul profundo #172554",
+      "azul claro #60a5fa",
+      "uso sobre blanco",
+      "tono confiable, moderno y accesible"
+    ],
+    "avoid": [
+      "mascotas",
+      "estilo de constructora pesada",
+      "demasiado detalle",
+      "degradados con colores ajenos a la pagina",
+      "taglines",
+      "simbolos de certificacion"
+    ]
+  },
+  "routes": [
+    {
+      "id": "home-tool",
+      "label": "Hogar en accion",
+      "family": "symbol",
+      "usage_contexts": [
+        "navbar",
+        "app icon",
+        "favicon",
+        "redes sociales"
+      ],
+      "prompt": "Create one polished professional logo exploration for the brand HomeFix on a clean white inspection background. Design a compact original symbol that combines a simple house silhouette with a subtle wrench or repair gesture using negative space, paired with the exact wordmark HomeFix. Use only #2563eb royal blue, #172554 deep navy, #60a5fa light blue, white, and optional #0f172a for wordmark text. Modern rounded geometric construction, trustworthy home-services technology brand, minimal detail, strong silhouette at 24px, balanced horizontal lockup and a small standalone icon preview. No tagline, no mockup scene, no construction-company badge, no hammer crossed with wrench, no gradients outside the specified blues, no extra text.",
+      "rationale": "Une de forma directa hogar y reparacion sin perder legibilidad.",
+      "best_for": "Marca principal en web y aplicacion.",
+      "decision_advice": "Elegir si se quiere explicar la categoria de inmediato.",
+      "watch_out": "La herramienta debe mantenerse sutil para no parecer una ferreteria.",
+      "next_step": "Vectorizar y probar el simbolo a 16, 24 y 32 px.",
+      "final_owner": "external-production-identity",
+      "next_prompt_hints": []
+    },
+    {
+      "id": "hf-monogram",
+      "label": "Monograma HF",
+      "family": "monogram",
+      "usage_contexts": [
+        "app icon",
+        "favicon",
+        "perfil",
+        "navbar"
+      ],
+      "prompt": "Create one polished professional logo exploration for HomeFix on a clean white inspection background. Build a distinctive compact HF monogram where the letter geometry subtly suggests a roofline and a repaired connection, paired with the exact wordmark HomeFix. Use only #2563eb, #172554, #60a5fa, white, and optional #0f172a. Crisp rounded geometry, digital-first, approachable and reliable, minimal flat vector-like appearance, excellent recognition at favicon size. Show one horizontal lockup plus one standalone square icon preview with generous whitespace. No tagline, no mockup scene, no generic house outline pasted above text, no extra words, no unrelated colors.",
+      "rationale": "Crea un identificador propio y compacto para una plataforma digital.",
+      "best_for": "Producto digital, favicon y perfiles.",
+      "decision_advice": "Elegir si se prioriza recordacion y rendimiento en iconos pequenos.",
+      "watch_out": "La H y la F deben seguir siendo reconocibles sin verse forzadas.",
+      "next_step": "Refinar la construccion geometrica y el espaciado del monograma.",
+      "final_owner": "external-production-identity",
+      "next_prompt_hints": []
+    },
+    {
+      "id": "trusted-home",
+      "label": "Hogar confiable",
+      "family": "geometric",
+      "usage_contexts": [
+        "website header",
+        "checkout",
+        "servicios",
+        "uniformes"
+      ],
+      "prompt": "Create one polished professional logo exploration for HomeFix on a clean white inspection background. Design an original minimal geometric mark combining a home roof, a subtle check or secure connection, and a friendly rounded shape, paired with the exact wordmark HomeFix. Palette strictly #2563eb, #172554, #60a5fa, white, and optional #0f172a. Calm trustworthy service-platform identity, simple flat vector-like forms, high contrast, no shield outline unless extremely abstract, strong at small size. Present a balanced horizontal logo and a standalone icon preview. No tagline, no mockup, no fake certification seal, no medical cross, no extra text, no unrelated colors.",
+      "rationale": "Refuerza confianza y seguimiento, dos promesas centrales del servicio.",
+      "best_for": "Momentos de compra, reserva y confirmacion.",
+      "decision_advice": "Elegir si la confianza debe pesar mas que la herramienta.",
+      "watch_out": "Evitar que el gesto de verificacion parezca una app financiera.",
+      "next_step": "Probar el simbolo junto a mensajes de seguridad y servicio.",
+      "final_owner": "external-production-identity",
+      "next_prompt_hints": []
+    },
+    {
+      "id": "modular-fix",
+      "label": "Modulo reparado",
+      "family": "tech",
+      "usage_contexts": [
+        "app icon",
+        "dashboard",
+        "navbar",
+        "material digital"
+      ],
+      "prompt": "Create one polished professional logo exploration for HomeFix on a clean white inspection background. Make an abstract low-detail symbol from two or three rounded modules that connect to form both a subtle house and a repaired joint, paired with the exact wordmark HomeFix. Use only #2563eb, #172554, #60a5fa, white, and optional #0f172a. Contemporary home-services marketplace, organized, fast, friendly, flat vector-like construction, memorable silhouette, excellent at 24px. Show a horizontal lockup and a standalone app icon preview. No tagline, no mockup scene, no obvious wrench, no generic roof clipart, no extra words, no unrelated colors.",
+      "rationale": "Comunica una plataforma organizada y escalable sin caer en iconos literales.",
+      "best_for": "Una identidad mas tecnologica y diferenciada.",
+      "decision_advice": "Elegir si HomeFix quiere parecer primero una plataforma y luego un servicio.",
+      "watch_out": "La abstraccion no debe ocultar por completo la relacion con el hogar.",
+      "next_step": "Ajustar proporciones y crear variantes responsivas del simbolo.",
+      "final_owner": "external-production-identity",
+      "next_prompt_hints": []
+    }
+  ],
+  "handoff": {
+    "default_owner": "external-production-identity",
+    "next_prompt_hints": []
+  }
+}
