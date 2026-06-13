@@ -55,7 +55,6 @@ function Navbar() {
       <nav className="site-navbar-links" aria-label="Navegacion principal">
         <NavLink to="/products">Productos</NavLink>
         <NavLink to="/services">Servicios</NavLink>
-        <NavLink to="/privacy">Privacidad</NavLink>
         <NavLink className="site-navbar-cart" to="/cart">
           Carrito
           <span className="site-navbar-cart-count">{cartCount}</span>
